@@ -6,20 +6,25 @@
     <title>VoltFix - Professional Electrical Services</title>
     
     <style>
-        /* ========== CSS VARIABLES & ROOT ========== */
+        /* ========== CSS VARIABLES & DESIGN TOKENS ========== */
         :root {
-            --primary: #0066ff;
-            --primary-dark: #0052cc;
-            --secondary: #ff6b35;
+            --primary: #1a1f3a;
+            --primary-light: #2d3651;
+            --accent: #d4af37;
+            --accent-light: #e8c547;
             --background: #ffffff;
-            --surface: #f8f9fb;
-            --text-primary: #1a1a1a;
-            --text-secondary: #666666;
-            --border: #e0e0e0;
-            --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.12);
-            --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.15);
-            --radius: 12px;
+            --surface: #f5f7fb;
+            --surface-dark: #eff1f5;
+            --text-primary: #1a1f3a;
+            --text-secondary: #6b7280;
+            --text-light: #9ca3af;
+            --border: #e5e7eb;
+            --success: #10b981;
+            --shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.12);
+            --radius: 8px;
+            --radius-lg: 12px;
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
@@ -31,10 +36,11 @@
         }
 
         html, body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
             color: var(--text-primary);
             background-color: var(--background);
             line-height: 1.6;
+            scroll-behavior: smooth;
         }
 
         body {
@@ -43,616 +49,538 @@
 
         /* ========== TYPOGRAPHY ========== */
         h1, h2, h3, h4, h5, h6 {
-            font-weight: 700;
-            line-height: 1.3;
+            font-weight: 600;
+            line-height: 1.25;
+            letter-spacing: -0.01em;
         }
 
         h1 {
-            font-size: 3rem;
-            letter-spacing: -0.02em;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--primary);
         }
 
         h2 {
-            font-size: 2.25rem;
+            font-size: 2.5rem;
             margin-bottom: 1.5rem;
+            color: var(--primary);
         }
 
         h3 {
             font-size: 1.5rem;
-            margin-bottom: 1rem;
+            margin-bottom: 0.75rem;
+            color: var(--primary);
         }
 
         h4 {
-            font-size: 1.25rem;
-            margin-bottom: 0.75rem;
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--primary);
         }
 
         p {
             color: var(--text-secondary);
             margin-bottom: 1rem;
+            line-height: 1.7;
         }
 
         a {
-            color: var(--primary);
+            color: var(--accent);
             text-decoration: none;
             transition: var(--transition);
         }
 
         a:hover {
-            color: var(--primary-dark);
+            color: var(--accent-light);
         }
 
-        /* ========== CONTAINER ========== */
+        /* ========== CONTAINER & LAYOUT ========== */
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
         }
 
+        .section {
+            padding: 6rem 0;
+        }
+
+        .section-light {
+            background-color: var(--surface);
+        }
+
         /* ========== NAVIGATION ========== */
         .navbar {
             background-color: var(--background);
-            box-shadow: var(--shadow);
+            box-shadow: var(--shadow-md);
             position: sticky;
             top: 0;
             z-index: 100;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border);
         }
 
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 1rem 20px;
+        .nav-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            height: 60px;
         }
 
-        .nav-logo {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+        .logo {
             font-size: 1.5rem;
             font-weight: 700;
             color: var(--primary);
-            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
-        .logo-icon {
-            font-size: 2rem;
+        .logo span {
+            color: var(--accent);
         }
 
-        .nav-menu {
+        .nav-links {
             display: flex;
             list-style: none;
-            gap: 2rem;
+            gap: 2.5rem;
             align-items: center;
         }
 
-        .nav-link {
+        .nav-links a {
             color: var(--text-primary);
+            font-size: 0.95rem;
             font-weight: 500;
             transition: var(--transition);
             position: relative;
-            cursor: pointer;
         }
 
-        .nav-link:hover,
-        .nav-link.active {
-            color: var(--primary);
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--accent);
         }
 
-        .nav-link.active::after {
+        .nav-links a.active::after {
             content: '';
             position: absolute;
             bottom: -8px;
             left: 0;
             right: 0;
-            height: 3px;
-            background-color: var(--primary);
-            border-radius: 2px;
+            height: 2px;
+            background-color: var(--accent);
+            border-radius: 1px;
         }
 
-        .nav-link-btn {
+        .cta-button {
             background-color: var(--primary);
-            color: white !important;
-            padding: 0.75rem 1.5rem;
+            color: white;
+            padding: 0.75rem 1.75rem;
             border-radius: var(--radius);
+            font-weight: 600;
+            font-size: 0.9rem;
             transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(26, 31, 58, 0.2);
         }
 
-        .nav-link-btn:hover {
-            background-color: var(--primary-dark);
+        .cta-button:hover {
+            background-color: var(--primary-light);
+            box-shadow: 0 4px 16px rgba(26, 31, 58, 0.3);
             transform: translateY(-2px);
-            box-shadow: var(--shadow);
+        }
+
+        .cta-button-accent {
+            background-color: var(--accent);
+            color: var(--primary);
+        }
+
+        .cta-button-accent:hover {
+            background-color: var(--accent-light);
         }
 
         .hamburger {
             display: none;
             flex-direction: column;
             cursor: pointer;
-            gap: 6px;
+            gap: 5px;
         }
 
         .hamburger span {
             width: 25px;
             height: 3px;
-            background-color: var(--text-primary);
+            background-color: var(--primary);
             border-radius: 2px;
             transition: var(--transition);
         }
 
         /* ========== HERO SECTION ========== */
         .hero {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
             color: white;
-            padding: 8rem 20px;
-            text-align: center;
-            min-height: 500px;
+            padding: 8rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            color: white;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            max-width: 500px;
+            line-height: 1.8;
+        }
+
+        .hero-buttons {
             display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .hero-content h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .hero-content p {
-            font-size: 1.25rem;
-            color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 2rem;
-        }
-
-        /* ========== BUTTONS ========== */
-        .btn {
-            display: inline-block;
-            padding: 0.75rem 1.5rem;
-            border-radius: var(--radius);
-            font-weight: 600;
-            text-align: center;
-            cursor: pointer;
-            border: none;
-            transition: var(--transition);
-            font-size: 1rem;
+            gap: 1rem;
+            flex-wrap: wrap;
         }
 
         .btn-primary {
-            background-color: var(--primary);
-            color: white;
+            background-color: var(--accent);
+            color: var(--primary);
+            padding: 1rem 2.5rem;
+            border-radius: var(--radius);
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition);
+            border: 2px solid var(--accent);
+            cursor: pointer;
+            box-shadow: 0 4px 16px rgba(212, 175, 55, 0.3);
         }
 
         .btn-primary:hover {
-            background-color: var(--primary-dark);
+            background-color: var(--accent-light);
+            border-color: var(--accent-light);
+            box-shadow: 0 8px 24px rgba(212, 175, 55, 0.4);
             transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
         }
 
         .btn-secondary {
-            background-color: var(--surface);
-            color: var(--primary);
-            border: 2px solid var(--primary);
+            background-color: transparent;
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: var(--radius);
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition);
+            border: 2px solid white;
+            cursor: pointer;
         }
 
         .btn-secondary:hover {
-            background-color: var(--primary);
-            color: white;
-        }
-
-        .btn-outline {
-            border: 2px solid var(--primary);
+            background-color: white;
             color: var(--primary);
-            background-color: transparent;
         }
 
-        .btn-outline:hover {
-            background-color: var(--primary);
-            color: white;
-        }
-
-        .btn-small {
-            padding: 0.5rem 1rem;
-            font-size: 0.875rem;
-        }
-
-        .btn-large {
-            padding: 1rem 2rem;
-            font-size: 1.1rem;
-        }
-
-        /* ========== SECTIONS ========== */
-        section {
-            padding: 5rem 20px;
-        }
-
-        .services-preview,
-        .features,
-        .cta,
-        .about-content,
-        .contact-section,
-        .booking-section {
-            padding: 4rem 20px;
-        }
-
-        .services-preview,
-        .features,
-        .about-content {
-            background-color: var(--background);
-        }
-
-        .cta {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            color: white;
-            text-align: center;
-        }
-
-        .cta h2 {
-            color: white;
-            margin-bottom: 1rem;
-        }
-
-        .cta p {
-            color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 2rem;
-            font-size: 1.1rem;
-        }
-
-        /* ========== PAGE HEADER ========== */
-        .page-header {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            color: white;
-            padding: 4rem 20px;
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        .page-header h1 {
-            color: white;
-            margin-bottom: 0.5rem;
-        }
-
-        .page-header p {
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 1.1rem;
-        }
-
-        /* ========== FILTER SECTION ========== */
-        .filter-section {
-            display: flex;
-            gap: 1.5rem;
+        /* ========== FILTERS ========== */
+        .filters-section {
+            background-color: var(--surface);
+            padding: 2rem;
+            border-radius: var(--radius-lg);
             margin-bottom: 3rem;
-            flex-wrap: wrap;
-            align-items: flex-end;
+        }
+
+        .filters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
         }
 
         .filter-group {
             display: flex;
             flex-direction: column;
             gap: 0.5rem;
-            flex: 1;
-            min-width: 200px;
         }
 
         .filter-group label {
             font-weight: 600;
-            font-size: 0.95rem;
-            color: var(--text-primary);
+            color: var(--primary);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
-        .filter-select {
-            padding: 0.75rem;
-            border: 2px solid var(--border);
+        .filter-group select {
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border);
             border-radius: var(--radius);
             font-size: 1rem;
             color: var(--text-primary);
-            background-color: var(--background);
+            background-color: white;
             cursor: pointer;
             transition: var(--transition);
+            font-family: inherit;
         }
 
-        .filter-select:hover,
-        .filter-select:focus {
-            border-color: var(--primary);
+        .filter-group select:hover,
+        .filter-group select:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
             outline: none;
+        }
+
+        .reset-btn {
+            padding: 0.75rem 1.5rem;
+            background-color: var(--text-light);
+            color: white;
+            border: none;
+            border-radius: var(--radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            align-self: flex-end;
+        }
+
+        .reset-btn:hover {
+            background-color: var(--text-secondary);
         }
 
         /* ========== SERVICES GRID ========== */
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
             gap: 2rem;
-            margin-bottom: 2rem;
         }
 
         .service-card {
             background-color: var(--background);
             border: 1px solid var(--border);
-            border-radius: var(--radius);
+            border-radius: var(--radius-lg);
             padding: 2rem;
-            text-align: center;
             transition: var(--transition);
-            box-shadow: var(--shadow);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-light));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
         }
 
         .service-card:hover {
-            transform: translateY(-8px);
+            border-color: var(--accent);
             box-shadow: var(--shadow-lg);
-            border-color: var(--primary);
+            transform: translateY(-4px);
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
         }
 
         .service-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .service-card h3 {
-            margin-bottom: 0.5rem;
-            color: var(--text-primary);
-        }
-
-        .service-type {
-            color: var(--primary);
-            font-weight: 600;
-            font-size: 0.9rem;
-            text-transform: capitalize;
-            margin-bottom: 1rem;
-        }
-
-        .service-description {
-            color: var(--text-secondary);
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
             margin-bottom: 1.5rem;
+        }
+
+        .service-card h4 {
+            margin-bottom: 0.75rem;
+        }
+
+        .service-card p {
             font-size: 0.95rem;
-            min-height: 60px;
+            margin-bottom: 1.5rem;
+            color: var(--text-secondary);
+        }
+
+        .service-price {
+            color: var(--accent);
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
         }
 
         .service-footer {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding-top: 1rem;
+            padding-top: 1.5rem;
             border-top: 1px solid var(--border);
         }
 
-        .price {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--secondary);
+        .book-btn {
+            background-color: var(--primary);
+            color: white;
+            padding: 0.65rem 1.5rem;
+            border-radius: var(--radius);
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
         }
 
-        /* ========== FEATURES GRID ========== */
+        .book-btn:hover {
+            background-color: var(--primary-light);
+            box-shadow: 0 4px 12px rgba(26, 31, 58, 0.2);
+            transform: translateY(-1px);
+        }
+
+        .price-badge {
+            background-color: var(--surface);
+            color: var(--accent);
+            padding: 0.4rem 0.9rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* ========== FEATURES SECTION ========== */
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
-            margin-bottom: 2rem;
         }
 
-        .feature-card {
-            background-color: var(--surface);
-            border-radius: var(--radius);
-            padding: 2rem;
+        .feature-item {
             text-align: center;
-            transition: var(--transition);
-        }
-
-        .feature-card:hover {
-            background-color: var(--primary);
-            color: white;
-        }
-
-        .feature-card h3 {
-            color: var(--text-primary);
-        }
-
-        .feature-card:hover h3 {
-            color: white;
-        }
-
-        .feature-card p {
-            color: var(--text-secondary);
-        }
-
-        .feature-card:hover p {
-            color: rgba(255, 255, 255, 0.9);
         }
 
         .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(232, 197, 71, 0.1));
+            border: 2px solid var(--accent);
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-size: 2.5rem;
-            margin-bottom: 1rem;
+            margin: 0 auto 1.5rem;
         }
 
-        /* ========== VALUES GRID ========== */
-        .values-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0;
+        .feature-item h4 {
+            margin-bottom: 0.75rem;
         }
 
-        .value-card {
-            background-color: var(--surface);
-            border-radius: var(--radius);
-            padding: 2rem;
-            text-align: center;
-        }
-
-        .value-card h3 {
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-        }
-
-        /* ========== ABOUT SECTION ========== */
-        .about-section {
-            margin-bottom: 3rem;
-        }
-
-        .about-section h2 {
-            color: var(--primary);
-        }
-
-        .checklist {
-            list-style: none;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1rem;
-        }
-
-        .checklist li {
-            padding: 1rem;
-            background-color: var(--surface);
-            border-radius: var(--radius);
-            border-left: 4px solid var(--primary);
-        }
-
-        /* ========== CONTACT SECTION ========== */
-        .contact-section {
-            background-color: var(--background);
-        }
-
-        .contact-wrapper {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: start;
-        }
-
-        .contact-info h2 {
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-
-        .contact-details {
-            display: grid;
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .contact-item h4 {
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-        }
-
-        .contact-item p {
-            margin: 0.25rem 0;
-        }
-
-        .contact-item .small {
-            font-size: 0.85rem;
+        .feature-item p {
             color: var(--text-secondary);
         }
 
         /* ========== FORMS ========== */
-        .contact-form-wrapper,
-        .booking-form-container {
-            background-color: var(--surface);
-            border-radius: var(--radius);
-            padding: 2rem;
-        }
-
         .form-group {
             margin-bottom: 1.5rem;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
         }
 
         .form-group label {
+            display: block;
             font-weight: 600;
+            color: var(--primary);
             margin-bottom: 0.5rem;
-            color: var(--text-primary);
+            font-size: 0.9rem;
         }
 
         .form-group input,
         .form-group textarea,
         .form-group select {
-            padding: 0.75rem;
-            border: 2px solid var(--border);
+            width: 100%;
+            padding: 0.875rem 1rem;
+            border: 1px solid var(--border);
             border-radius: var(--radius);
             font-size: 1rem;
             font-family: inherit;
-            color: var(--text-primary);
-            background-color: var(--background);
             transition: var(--transition);
+            background-color: white;
         }
 
         .form-group input:focus,
         .form-group textarea:focus,
         .form-group select:focus {
             outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.1);
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
         }
 
         .form-group textarea {
             resize: vertical;
+            min-height: 120px;
         }
 
-        .form-group.checkbox {
-            flex-direction: row;
-            align-items: center;
-            gap: 0.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .form-group.checkbox input {
-            width: 20px;
-            height: 20px;
-            margin: 0;
-        }
-
-        .booking-info {
+        .form-row {
             display: grid;
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
         }
 
-        .info-box {
-            background-color: var(--surface);
+        .submit-btn {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem 2.5rem;
             border-radius: var(--radius);
-            padding: 1.5rem;
-            border-left: 4px solid var(--primary);
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            box-shadow: 0 4px 12px rgba(26, 31, 58, 0.2);
         }
 
-        .info-box h4 {
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-
-        .info-box ol {
-            margin-left: 1.5rem;
-            color: var(--text-secondary);
-        }
-
-        .info-box ol li {
-            margin-bottom: 0.5rem;
+        .submit-btn:hover {
+            background-color: var(--primary-light);
+            box-shadow: 0 8px 20px rgba(26, 31, 58, 0.3);
+            transform: translateY(-2px);
         }
 
         /* ========== FOOTER ========== */
-        .footer {
-            background-color: var(--text-primary);
+        footer {
+            background-color: var(--primary);
             color: white;
-            padding: 3rem 20px 1rem;
+            padding: 4rem 0 2rem;
+            margin-top: 6rem;
         }
 
         .footer-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
+            gap: 3rem;
+            margin-bottom: 3rem;
         }
 
         .footer-section h4 {
-            color: white;
-            margin-bottom: 1rem;
-        }
-
-        .footer-section p {
-            color: rgba(255, 255, 255, 0.7);
+            color: var(--accent);
+            margin-bottom: 1.5rem;
         }
 
         .footer-section ul {
@@ -660,78 +588,115 @@
         }
 
         .footer-section ul li {
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.75rem;
         }
 
         .footer-section a {
-            color: rgba(255, 255, 255, 0.7);
+            color: rgba(255, 255, 255, 0.8);
             transition: var(--transition);
         }
 
         .footer-section a:hover {
-            color: white;
+            color: var(--accent);
         }
 
         .footer-bottom {
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             padding-top: 2rem;
             text-align: center;
-            color: rgba(255, 255, 255, 0.6);
+            color: rgba(255, 255, 255, 0.7);
         }
 
-        /* ========== UTILITY CLASSES ========== */
-        .text-center {
-            text-align: center;
+        /* ========== SUCCESS MESSAGE ========== */
+        .success-message {
+            background-color: var(--success);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: var(--radius);
+            margin-bottom: 1.5rem;
+            display: none;
+            animation: slideDown 0.3s ease;
         }
 
-        .mt-4 {
-            margin-top: 2rem;
+        .success-message.show {
+            display: block;
         }
 
-        .hidden {
-            display: none !important;
+        /* ========== ANIMATIONS ========== */
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        .no-results {
-            text-align: center;
-            padding: 2rem;
-            color: var(--text-secondary);
-            font-size: 1.1rem;
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        /* ========== RESPONSIVE DESIGN ========== */
+        .service-card {
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        /* ========== RESPONSIVE ========== */
         @media (max-width: 768px) {
-            h1 {
-                font-size: 2rem;
-            }
-
-            h2 {
-                font-size: 1.75rem;
-            }
-
-            h3 {
-                font-size: 1.25rem;
-            }
-
-            .nav-menu {
-                position: absolute;
-                top: 70px;
-                left: 0;
-                right: 0;
-                background-color: var(--background);
-                flex-direction: column;
-                gap: 1rem;
-                padding: 2rem 20px;
-                display: none;
-                box-shadow: var(--shadow-md);
-            }
-
-            .nav-menu.active {
-                display: flex;
+            .nav-links {
+                gap: 1.5rem;
             }
 
             .hamburger {
                 display: flex;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 60px;
+                left: 0;
+                right: 0;
+                background-color: var(--background);
+                flex-direction: column;
+                gap: 0;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+                z-index: 99;
+                border-bottom: 1px solid var(--border);
+                box-shadow: var(--shadow-md);
+            }
+
+            .nav-links.active {
+                max-height: 400px;
+            }
+
+            .nav-links li {
+                border-bottom: 1px solid var(--border);
+                width: 100%;
+            }
+
+            .nav-links a {
+                display: block;
+                padding: 1rem 1.5rem;
+                color: var(--text-primary);
+            }
+
+            .nav-links a.active::after {
+                bottom: 1rem;
+                height: 3px;
+                width: 3px;
+                border-radius: 50%;
+                left: auto;
+                right: 1.5rem;
             }
 
             .hamburger.active span:nth-child(1) {
@@ -746,396 +711,317 @@
                 transform: rotate(-45deg) translate(7px, -7px);
             }
 
-            .nav-link-btn {
-                width: 100%;
-                text-align: center;
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            h2 {
+                font-size: 2rem;
             }
 
             .hero {
-                padding: 4rem 20px;
-                min-height: auto;
+                padding: 4rem 0;
             }
 
-            .hero-content h1 {
-                font-size: 2.2rem;
+            .hero h1 {
+                font-size: 2rem;
+                margin-bottom: 1rem;
             }
 
-            .hero-content p {
+            .hero p {
                 font-size: 1rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .btn-primary, .btn-secondary {
+                width: 100%;
+            }
+
+            .section {
+                padding: 4rem 0;
             }
 
             .services-grid {
                 grid-template-columns: 1fr;
+                gap: 1.5rem;
             }
 
-            .filter-section {
-                flex-direction: column;
-                align-items: stretch;
-            }
-
-            .filter-group {
-                width: 100%;
-            }
-
-            .form-row {
+            .filters-grid {
                 grid-template-columns: 1fr;
-            }
-
-            .contact-wrapper {
-                grid-template-columns: 1fr;
-            }
-
-            .features-grid,
-            .values-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-grid {
-                grid-template-columns: 1fr;
-            }
-
-            section {
-                padding: 3rem 20px;
-            }
-
-            .services-preview,
-            .features,
-            .cta,
-            .about-content,
-            .contact-section,
-            .booking-section {
-                padding: 3rem 20px;
             }
         }
 
         @media (max-width: 480px) {
+            .container {
+                padding: 0 15px;
+            }
+
             h1 {
-                font-size: 1.5rem;
-            }
-
-            h2 {
-                font-size: 1.3rem;
-            }
-
-            h3 {
-                font-size: 1.1rem;
-            }
-
-            .nav-container {
-                padding: 0.75rem 20px;
-            }
-
-            .nav-menu {
-                top: 60px;
-                padding: 1.5rem 20px;
-            }
-
-            .hero-content h1 {
                 font-size: 1.75rem;
             }
 
-            .hero-content p {
-                font-size: 0.95rem;
+            h2 {
+                font-size: 1.5rem;
             }
 
-            .btn {
-                padding: 0.6rem 1.2rem;
-                font-size: 0.9rem;
+            .hero {
+                padding: 3rem 0;
             }
 
-            .btn-large {
-                padding: 0.75rem 1.5rem;
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+
+            .section {
+                padding: 3rem 0;
             }
 
             .service-card {
                 padding: 1.5rem;
             }
 
-            .contact-form-wrapper,
-            .booking-form-container {
-                padding: 1.5rem;
+            .nav-links {
+                gap: 0;
             }
+        }
 
-            .info-box {
-                padding: 1rem;
-            }
+        /* ========== HIDDEN PAGES ========== */
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
         }
     </style>
 </head>
 <body>
-    <!-- Navigation Bar -->
+    <!-- NAVBAR -->
     <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo" onclick="showPage('home')">
-                <span class="logo-icon">⚡</span>
-                <span class="logo-text">VoltFix</span>
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">⚡ <span>VoltFix</span></div>
+                <ul class="nav-links">
+                    <li><a href="#" class="nav-item active" data-page="home">Home</a></li>
+                    <li><a href="#" class="nav-item" data-page="services">Services</a></li>
+                    <li><a href="#" class="nav-item" data-page="about">About</a></li>
+                    <li><a href="#" class="nav-item" data-page="contact">Contact</a></li>
+                </ul>
+                <button class="cta-button cta-button-accent nav-item" data-page="booking">Book Now</button>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
             </div>
-            <div class="hamburger" id="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            <ul class="nav-menu" id="navMenu">
-                <li><a class="nav-link active" onclick="showPage('home')">Home</a></li>
-                <li><a class="nav-link" onclick="showPage('services')">Services</a></li>
-                <li><a class="nav-link" onclick="showPage('about')">About</a></li>
-                <li><a class="nav-link" onclick="showPage('contact')">Contact</a></li>
-                <li><a class="nav-link nav-link-btn" onclick="showPage('booking')">Book Now</a></li>
-            </ul>
         </div>
     </nav>
 
     <!-- HOME PAGE -->
-    <div id="homePage" class="page">
-        <!-- Hero Section -->
-        <header class="hero">
-            <div class="hero-content">
-                <h1>Expert Electrical Solutions</h1>
-                <p>Professional electrical services tailored to your needs</p>
-                <a class="btn btn-primary" onclick="scrollToSection('services-preview')">Explore Services</a>
-            </div>
-        </header>
-
-        <!-- Filtering Section -->
-        <section class="services-preview" id="services-preview">
+    <div class="page active" id="home">
+        <!-- HERO SECTION -->
+        <section class="hero">
             <div class="container">
-                <h2>Our Services</h2>
-                
-                <!-- Filter Controls -->
-                <div class="filter-section">
-                    <div class="filter-group">
-                        <label for="serviceFilter">Service Type:</label>
-                        <select id="serviceFilter" class="filter-select">
-                            <option value="">All Services</option>
-                            <option value="installations">Installations</option>
-                            <option value="repairs">Repairs</option>
-                            <option value="maintenance">Maintenance</option>
-                        </select>
+                <div class="hero-content">
+                    <h1>Professional Electrical Solutions</h1>
+                    <p>Expert electrical services for residential and commercial properties. Licensed, insured, and trusted since 2015.</p>
+                    <div class="hero-buttons">
+                        <button class="btn-primary nav-item" data-page="booking">Schedule Service</button>
+                        <button class="btn-secondary nav-item" data-page="services">Browse Services</button>
                     </div>
-
-                    <div class="filter-group">
-                        <label for="priceFilter">Price Range:</label>
-                        <select id="priceFilter" class="filter-select">
-                            <option value="">All Prices</option>
-                            <option value="budget">Budget (Under $500)</option>
-                            <option value="standard">Standard ($500-$1500)</option>
-                            <option value="premium">Premium ($1500+)</option>
-                        </select>
-                    </div>
-
-                    <button class="btn btn-secondary" id="resetFilters">Reset Filters</button>
-                </div>
-
-                <!-- Services Grid -->
-                <div class="services-grid" id="servicesGrid">
-                    <!-- Services will be populated by JavaScript -->
-                </div>
-
-                <div class="text-center mt-4">
-                    <a class="btn btn-outline" onclick="showPage('services')">View All Services</a>
                 </div>
             </div>
         </section>
 
-        <!-- Features Section -->
-        <section class="features">
+        <!-- FILTERS -->
+        <section class="section">
             <div class="container">
-                <h2>Why Choose VoltFix?</h2>
+                <div class="filters-section">
+                    <div class="filters-grid">
+                        <div class="filter-group">
+                            <label for="service-type">Service Type</label>
+                            <select id="service-type">
+                                <option value="">All Services</option>
+                                <option value="installations">Installations</option>
+                                <option value="repairs">Repairs</option>
+                                <option value="maintenance">Maintenance</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label for="price-range">Price Range</label>
+                            <select id="price-range">
+                                <option value="">All Prices</option>
+                                <option value="budget">Budget (Under $500)</option>
+                                <option value="standard">Standard ($500-$1500)</option>
+                                <option value="premium">Premium ($1500+)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button class="reset-btn" id="reset-filters">Reset Filters</button>
+                </div>
+
+                <!-- SERVICES GRID -->
+                <div id="services-container" class="services-grid"></div>
+            </div>
+        </section>
+
+        <!-- FEATURES SECTION -->
+        <section class="section section-light">
+            <div class="container">
+                <h2 style="text-align: center; margin-bottom: 3rem;">Why Choose VoltFix</h2>
                 <div class="features-grid">
-                    <div class="feature-card">
-                        <div class="feature-icon">🎯</div>
-                        <h3>Professional Team</h3>
-                        <p>Certified and experienced electricians ready to serve you</p>
+                    <div class="feature-item">
+                        <div class="feature-icon">🏆</div>
+                        <h4>Licensed & Certified</h4>
+                        <p>All electricians are fully licensed and certified with years of professional experience.</p>
                     </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">⏱️</div>
-                        <h3>Quick Response</h3>
-                        <p>Fast service with minimal downtime for your home or business</p>
+                    <div class="feature-item">
+                        <div class="feature-icon">⚡</div>
+                        <h4>24/7 Available</h4>
+                        <p>Emergency electrical services available round the clock for your peace of mind.</p>
                     </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">✅</div>
-                        <h3>Quality Guaranteed</h3>
-                        <p>All work backed by our satisfaction guarantee</p>
+                    <div class="feature-item">
+                        <div class="feature-icon">💯</div>
+                        <h4>Quality Guaranteed</h4>
+                        <p>We stand behind our work with comprehensive warranties on all services.</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🔒</div>
+                        <h4>Fully Insured</h4>
+                        <p>Complete liability and workers compensation coverage for total protection.</p>
                     </div>
                 </div>
-            </div>
-        </section>
-
-        <!-- CTA Section -->
-        <section class="cta">
-            <div class="container">
-                <h2>Ready to Get Started?</h2>
-                <p>Book your appointment today and experience the VoltFix difference</p>
-                <a class="btn btn-primary btn-large" onclick="showPage('booking')">Schedule Service</a>
             </div>
         </section>
     </div>
 
     <!-- SERVICES PAGE -->
-    <div id="servicesPage" class="page hidden">
-        <div class="page-header">
-            <h1>All Services</h1>
-            <p>Complete range of electrical solutions for every need</p>
-        </div>
-
-        <section class="services-preview">
+    <div class="page" id="services">
+        <section class="section">
             <div class="container">
-                <!-- Filter Controls -->
-                <div class="filter-section">
-                    <div class="filter-group">
-                        <label for="serviceFilter2">Service Type:</label>
-                        <select id="serviceFilter2" class="filter-select">
-                            <option value="">All Services</option>
-                            <option value="installations">Installations</option>
-                            <option value="repairs">Repairs</option>
-                            <option value="maintenance">Maintenance</option>
-                        </select>
-                    </div>
+                <h2>Our Services</h2>
+                <p style="font-size: 1.1rem; margin-bottom: 3rem; max-width: 600px;">Comprehensive electrical solutions tailored to your needs. Explore our full range of services below.</p>
 
-                    <div class="filter-group">
-                        <label for="priceFilter2">Price Range:</label>
-                        <select id="priceFilter2" class="filter-select">
-                            <option value="">All Prices</option>
-                            <option value="budget">Budget (Under $500)</option>
-                            <option value="standard">Standard ($500-$1500)</option>
-                            <option value="premium">Premium ($1500+)</option>
-                        </select>
+                <!-- FILTERS -->
+                <div class="filters-section">
+                    <div class="filters-grid">
+                        <div class="filter-group">
+                            <label for="service-type-page2">Service Type</label>
+                            <select id="service-type-page2">
+                                <option value="">All Services</option>
+                                <option value="installations">Installations</option>
+                                <option value="repairs">Repairs</option>
+                                <option value="maintenance">Maintenance</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label for="price-range-page2">Price Range</label>
+                            <select id="price-range-page2">
+                                <option value="">All Prices</option>
+                                <option value="budget">Budget (Under $500)</option>
+                                <option value="standard">Standard ($500-$1500)</option>
+                                <option value="premium">Premium ($1500+)</option>
+                            </select>
+                        </div>
                     </div>
-
-                    <button class="btn btn-secondary" id="resetFilters2">Reset Filters</button>
+                    <button class="reset-btn" id="reset-filters-page2">Reset Filters</button>
                 </div>
 
-                <!-- Services Grid -->
-                <div class="services-grid" id="servicesGrid2">
-                    <!-- Services will be populated by JavaScript -->
-                </div>
+                <!-- SERVICES GRID -->
+                <div id="services-container-page2" class="services-grid"></div>
             </div>
         </section>
     </div>
 
     <!-- ABOUT PAGE -->
-    <div id="aboutPage" class="page hidden">
-        <div class="page-header">
-            <h1>About VoltFix</h1>
-            <p>Your trusted partner in electrical excellence</p>
-        </div>
-
-        <section class="about-content">
+    <div class="page" id="about">
+        <section class="section">
             <div class="container">
-                <div class="about-section">
-                    <h2>Our Story</h2>
-                    <p>VoltFix was founded with a simple mission: to provide the highest quality electrical services with unmatched professionalism and reliability. For over 15 years, we've been serving residential and commercial customers throughout the region.</p>
-                    <p>Our team of certified electricians is dedicated to solving your electrical needs efficiently and safely, ensuring your complete satisfaction with every project.</p>
-                </div>
-
-                <div class="about-section">
-                    <h2>Our Mission</h2>
-                    <p>To deliver exceptional electrical services that exceed customer expectations while maintaining the highest standards of safety and professionalism.</p>
-                </div>
-
-                <div class="about-section">
-                    <h2>Our Values</h2>
-                    <div class="values-grid">
-                        <div class="value-card">
-                            <h3>Integrity</h3>
-                            <p>Honest pricing and transparent communication in every interaction</p>
-                        </div>
-                        <div class="value-card">
-                            <h3>Excellence</h3>
-                            <p>Top-quality work performed by certified professionals</p>
-                        </div>
-                        <div class="value-card">
-                            <h3>Safety</h3>
-                            <p>Strict adherence to all safety codes and regulations</p>
-                        </div>
-                        <div class="value-card">
-                            <h3>Reliability</h3>
-                            <p>Dependable service you can count on every time</p>
-                        </div>
+                <h2>About VoltFix</h2>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;">
+                    <div>
+                        <h3>Expert Electrical Services Since 2015</h3>
+                        <p>VoltFix has been serving residential and commercial clients across the region for over eight years. Our team of certified electricians is committed to delivering exceptional service with attention to detail.</p>
+                        <p>We specialize in everything from routine maintenance to complex installations, ensuring your electrical systems are safe, efficient, and up to code.</p>
+                        <h4 style="margin-top: 2rem; margin-bottom: 1rem;">Our Mission</h4>
+                        <p>To provide reliable, professional electrical services that exceed customer expectations while maintaining the highest safety standards.</p>
                     </div>
+                    <div style="background: linear-gradient(135deg, var(--accent), var(--accent-light)); height: 400px; border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; color: white; font-size: 5rem;">⚡</div>
                 </div>
 
-                <div class="about-section">
-                    <h2>What Our Customers Say</h2>
-                    <ul class="checklist">
-                        <li>"Professional, reliable, and fair pricing. Highly recommend!" - Sarah M.</li>
-                        <li>"Arrived on time and completed the job perfectly. Great service!" - James K.</li>
-                        <li>"Best electricians in town. They really know their stuff!" - Maria L.</li>
-                        <li>"Quick response and expert work. Very satisfied." - Robert T.</li>
-                    </ul>
+                <h3 style="margin-top: 4rem; margin-bottom: 2rem;">Our Team</h3>
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <div class="feature-icon" style="background: var(--surface); color: var(--accent); border: 2px solid var(--accent);">👨‍💼</div>
+                        <h4>Experienced Team</h4>
+                        <p>With an average of 10 years of industry experience, our electricians bring expertise to every job.</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon" style="background: var(--surface); color: var(--accent); border: 2px solid var(--accent);">📚</div>
+                        <h4>Continuous Training</h4>
+                        <p>Our team stays updated with latest electrical codes and technologies through ongoing education.</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon" style="background: var(--surface); color: var(--accent); border: 2px solid var(--accent);">⭐</div>
+                        <h4>Customer Focus</h4>
+                        <p>Every project is treated as if it were our own home. Customer satisfaction is our top priority.</p>
+                    </div>
                 </div>
             </div>
         </section>
     </div>
 
     <!-- CONTACT PAGE -->
-    <div id="contactPage" class="page hidden">
-        <div class="page-header">
-            <h1>Contact Us</h1>
-            <p>Get in touch with VoltFix today</p>
-        </div>
-
-        <section class="contact-section">
+    <div class="page" id="contact">
+        <section class="section section-light">
             <div class="container">
-                <div class="contact-wrapper">
-                    <div class="contact-info">
-                        <h2>Get In Touch</h2>
-                        <p>Have a question about our services? We'd love to hear from you. Contact us today!</p>
-                        
-                        <div class="contact-details">
-                            <div class="contact-item">
-                                <h4>📞 Phone</h4>
-                                <p>(555) 123-4567</p>
-                                <p class="small">Monday - Friday: 8AM - 6PM<br>Saturday: 9AM - 4PM<br>Sunday: Closed</p>
-                            </div>
-                            <div class="contact-item">
-                                <h4>📧 Email</h4>
-                                <p>info@voltfix.com</p>
-                                <p class="small">Response within 24 hours</p>
-                            </div>
-                            <div class="contact-item">
-                                <h4>📍 Address</h4>
-                                <p>123 Electric Avenue<br>Power City, PC 12345</p>
-                                <p class="small">Service area: 50-mile radius</p>
-                            </div>
-                            <div class="contact-item">
-                                <h4>🚨 Emergency Service</h4>
-                                <p>(555) 123-4567 ext. 911</p>
-                                <p class="small">24/7 Emergency Hotline</p>
-                            </div>
+                <h2>Get in Touch</h2>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;">
+                    <div>
+                        <h3 style="margin-bottom: 2rem;">Contact Information</h3>
+                        <div style="margin-bottom: 2rem;">
+                            <h4 style="color: var(--accent); margin-bottom: 0.5rem;">Phone</h4>
+                            <p><a href="tel:+1234567890">(123) 456-7890</a></p>
+                        </div>
+                        <div style="margin-bottom: 2rem;">
+                            <h4 style="color: var(--accent); margin-bottom: 0.5rem;">Email</h4>
+                            <p><a href="mailto:info@voltfix.com">info@voltfix.com</a></p>
+                        </div>
+                        <div style="margin-bottom: 2rem;">
+                            <h4 style="color: var(--accent); margin-bottom: 0.5rem;">Address</h4>
+                            <p>123 Electric Avenue<br>Power City, PC 12345</p>
+                        </div>
+                        <div>
+                            <h4 style="color: var(--accent); margin-bottom: 0.5rem;">Hours</h4>
+                            <p>Monday - Friday: 8:00 AM - 6:00 PM<br>Saturday: 10:00 AM - 4:00 PM<br>Sunday: Emergency Only</p>
                         </div>
                     </div>
-
-                    <div class="contact-form-wrapper">
-                        <h3>Send us a Message</h3>
-                        <form id="contactForm">
-                            <div class="form-group">
-                                <label for="name">Full Name</label>
-                                <input type="text" id="name" name="name" required>
-                            </div>
-
+                    <div>
+                        <h3 style="margin-bottom: 2rem;">Send us a Message</h3>
+                        <div id="contact-success" class="success-message">Thank you! We'll get back to you shortly.</div>
+                        <form id="contact-form">
                             <div class="form-row">
                                 <div class="form-group">
-                                    <label for="email">Email Address</label>
-                                    <input type="email" id="email" name="email" required>
+                                    <label for="name">Name</label>
+                                    <input type="text" id="name" placeholder="Your name" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="phone">Phone Number</label>
-                                    <input type="tel" id="phone" name="phone" required>
+                                    <label for="email">Email</label>
+                                    <input type="email" id="email" placeholder="your@email.com" required>
                                 </div>
                             </div>
-
                             <div class="form-group">
                                 <label for="subject">Subject</label>
-                                <input type="text" id="subject" name="subject" required>
+                                <input type="text" id="subject" placeholder="How can we help?" required>
                             </div>
-
                             <div class="form-group">
                                 <label for="message">Message</label>
-                                <textarea id="message" name="message" rows="5" required></textarea>
+                                <textarea id="message" placeholder="Tell us more about your project..." required></textarea>
                             </div>
-
-                            <button type="submit" class="btn btn-primary btn-large">Send Message</button>
+                            <button type="submit" class="submit-btn">Send Message</button>
                         </form>
                     </div>
                 </div>
@@ -1144,391 +1030,267 @@
     </div>
 
     <!-- BOOKING PAGE -->
-    <div id="bookingPage" class="page hidden">
-        <div class="page-header">
-            <h1>Book Your Service</h1>
-            <p>Schedule your electrical service appointment</p>
-        </div>
-
-        <section class="booking-section">
-            <div class="container">
-                <div class="booking-wrapper" style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start;">
-                    <div class="booking-info">
-                        <h3>How It Works</h3>
-                        <div class="info-box">
-                            <h4>Easy Booking Process</h4>
-                            <ol>
-                                <li>Fill out the booking form with your details</li>
-                                <li>Select your preferred service type</li>
-                                <li>Choose a convenient date and time</li>
-                                <li>We'll confirm your appointment within 24 hours</li>
-                                <li>Our technician arrives ready to help!</li>
-                            </ol>
-                        </div>
-
-                        <div class="info-box">
-                            <h4>What to Expect</h4>
-                            <p>Our certified technicians will arrive on time, fully equipped to handle your electrical needs. They'll assess the situation, provide a clear explanation, and complete the work professionally.</p>
-                        </div>
-
-                        <div class="info-box">
-                            <h4>Service Area</h4>
-                            <p>We proudly serve the entire metropolitan area within a 50-mile radius. Same-day and emergency services are available.</p>
-                        </div>
+    <div class="page" id="booking">
+        <section class="section">
+            <div class="container" style="max-width: 600px;">
+                <h2>Schedule Your Service</h2>
+                <p style="font-size: 1.1rem; margin-bottom: 3rem; color: var(--text-secondary);">Select your service and preferred date. We'll confirm your appointment shortly.</p>
+                
+                <div id="booking-success" class="success-message">Booking confirmed! We'll contact you shortly to confirm the details.</div>
+                
+                <form id="booking-form">
+                    <div class="form-group">
+                        <label for="booking-service">Select Service</label>
+                        <select id="booking-service" required>
+                            <option value="">Choose a service...</option>
+                        </select>
                     </div>
-
-                    <div class="booking-form-container">
-                        <form id="bookingForm">
-                            <h3 style="margin-bottom: 1.5rem;">Appointment Details</h3>
-
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="bookName">Full Name</label>
-                                    <input type="text" id="bookName" name="name" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="bookEmail">Email Address</label>
-                                    <input type="email" id="bookEmail" name="email" required>
-                                </div>
-                            </div>
-
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="bookPhone">Phone Number</label>
-                                    <input type="tel" id="bookPhone" name="phone" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="bookService">Service Type</label>
-                                    <select id="bookService" name="service" required>
-                                        <option value="">Select a service</option>
-                                        <option value="electrical-outlet-installation">Electrical Outlet Installation</option>
-                                        <option value="circuit-breaker-replacement">Circuit Breaker Replacement</option>
-                                        <option value="lighting-system">Lighting System Installation</option>
-                                        <option value="panel-upgrade">Panel Upgrade Service</option>
-                                        <option value="emergency-repair">Emergency Electrical Repair</option>
-                                        <option value="routine-maintenance">Routine Maintenance</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="bookDate">Preferred Date</label>
-                                    <input type="date" id="bookDate" name="date" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="bookTime">Preferred Time</label>
-                                    <select id="bookTime" name="time" required>
-                                        <option value="">Select time</option>
-                                        <option value="8-10">8:00 AM - 10:00 AM</option>
-                                        <option value="10-12">10:00 AM - 12:00 PM</option>
-                                        <option value="12-14">12:00 PM - 2:00 PM</option>
-                                        <option value="14-16">2:00 PM - 4:00 PM</option>
-                                        <option value="16-18">4:00 PM - 6:00 PM</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="bookCity">City</label>
-                                    <input type="text" id="bookCity" name="city" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="bookZip">ZIP Code</label>
-                                    <input type="text" id="bookZip" name="zip" required>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="bookAddress">Street Address</label>
-                                <input type="text" id="bookAddress" name="address" required>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="bookDescription">Service Description</label>
-                                <textarea id="bookDescription" name="description" rows="4" placeholder="Describe the work you need done..." required></textarea>
-                            </div>
-
-                            <div class="form-group checkbox">
-                                <input type="checkbox" id="termsCheck" name="terms" required>
-                                <label for="termsCheck" style="margin-bottom: 0;">I agree to the terms and conditions</label>
-                            </div>
-
-                            <button type="submit" class="btn btn-primary btn-large" style="width: 100%;">Book Appointment</button>
-                        </form>
+                    <div class="form-group">
+                        <label for="booking-name">Full Name</label>
+                        <input type="text" id="booking-name" placeholder="Your name" required>
                     </div>
-                </div>
+                    <div class="form-group">
+                        <label for="booking-phone">Phone Number</label>
+                        <input type="tel" id="booking-phone" placeholder="(123) 456-7890" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="booking-email">Email Address</label>
+                        <input type="email" id="booking-email" placeholder="your@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="booking-date">Preferred Date</label>
+                        <input type="date" id="booking-date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="booking-time">Preferred Time</label>
+                        <select id="booking-time" required>
+                            <option value="">Select time...</option>
+                            <option value="9:00 AM">9:00 AM</option>
+                            <option value="10:00 AM">10:00 AM</option>
+                            <option value="11:00 AM">11:00 AM</option>
+                            <option value="1:00 PM">1:00 PM</option>
+                            <option value="2:00 PM">2:00 PM</option>
+                            <option value="3:00 PM">3:00 PM</option>
+                            <option value="4:00 PM">4:00 PM</option>
+                            <option value="5:00 PM">5:00 PM</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="booking-details">Service Details (Optional)</label>
+                        <textarea id="booking-details" placeholder="Describe any specific issues or requirements..."></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Confirm Booking</button>
+                </form>
             </div>
         </section>
     </div>
 
-    <!-- Footer -->
-    <footer class="footer">
+    <!-- FOOTER -->
+    <footer>
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-section">
                     <h4>VoltFix</h4>
-                    <p>Your trusted electrical services provider</p>
+                    <p>Professional electrical services you can trust. Available 24/7 for emergencies.</p>
                 </div>
                 <div class="footer-section">
                     <h4>Quick Links</h4>
                     <ul>
-                        <li><a onclick="showPage('home')">Home</a></li>
-                        <li><a onclick="showPage('services')">Services</a></li>
-                        <li><a onclick="showPage('about')">About</a></li>
-                        <li><a onclick="showPage('contact')">Contact</a></li>
+                        <li><a href="#" class="nav-item" data-page="home">Home</a></li>
+                        <li><a href="#" class="nav-item" data-page="services">Services</a></li>
+                        <li><a href="#" class="nav-item" data-page="about">About Us</a></li>
+                        <li><a href="#" class="nav-item" data-page="contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="#">Installations</a></li>
+                        <li><a href="#">Repairs</a></li>
+                        <li><a href="#">Maintenance</a></li>
+                        <li><a href="#">Emergency</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
                     <h4>Contact</h4>
-                    <p>Email: info@voltfix.com</p>
-                    <p>Phone: (555) 123-4567</p>
+                    <ul>
+                        <li><a href="tel:+1234567890">(123) 456-7890</a></li>
+                        <li><a href="mailto:info@voltfix.com">info@voltfix.com</a></li>
+                        <li><a href="#">Service Hours: 8AM-6PM</a></li>
+                        <li><a href="#">Emergency: 24/7</a></li>
+                    </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 VoltFix. All rights reserved.</p>
+                <p>&copy; 2024 VoltFix. All rights reserved. Licensed Electrical Contractor.</p>
             </div>
         </div>
     </footer>
 
     <script>
         // ========== SERVICE DATA ==========
-        const servicesData = [
-            {
-                id: 1,
-                name: "Electrical Outlet Installation",
-                type: "installations",
-                price: 350,
-                priceRange: "budget",
-                description: "Professional installation of new electrical outlets",
-                icon: "🔌"
-            },
-            {
-                id: 2,
-                name: "Circuit Breaker Replacement",
-                type: "repairs",
-                price: 250,
-                priceRange: "budget",
-                description: "Safe replacement of faulty circuit breakers",
-                icon: "⚙️"
-            },
-            {
-                id: 3,
-                name: "Lighting System Installation",
-                type: "installations",
-                price: 800,
-                priceRange: "standard",
-                description: "Complete lighting system design and installation",
-                icon: "💡"
-            },
-            {
-                id: 4,
-                name: "Panel Upgrade Service",
-                type: "installations",
-                price: 1800,
-                priceRange: "premium",
-                description: "Upgrade your electrical panel to handle more load",
-                icon: "📊"
-            },
-            {
-                id: 5,
-                name: "Emergency Electrical Repair",
-                type: "repairs",
-                price: 400,
-                priceRange: "budget",
-                description: "24/7 emergency repair services for urgent issues",
-                icon: "🚨"
-            },
-            {
-                id: 6,
-                name: "Routine Maintenance",
-                type: "maintenance",
-                price: 150,
-                priceRange: "budget",
-                description: "Regular electrical system inspections and maintenance",
-                icon: "✓"
-            },
-            {
-                id: 7,
-                name: "Wiring Inspection & Upgrade",
-                type: "maintenance",
-                price: 600,
-                priceRange: "standard",
-                description: "Complete inspection and upgrade of residential wiring",
-                icon: "🔍"
-            },
-            {
-                id: 8,
-                name: "Commercial Electrical System",
-                type: "installations",
-                price: 2500,
-                priceRange: "premium",
-                description: "Large-scale commercial electrical installation",
-                icon: "🏢"
-            },
-            {
-                id: 9,
-                name: "Outlet Repair Service",
-                type: "repairs",
-                price: 200,
-                priceRange: "budget",
-                description: "Repair non-functioning or damaged outlets",
-                icon: "🔧"
-            },
-            {
-                id: 10,
-                name: "Generator Installation",
-                type: "installations",
-                price: 2200,
-                priceRange: "premium",
-                description: "Professional backup generator installation",
-                icon: "⚡"
-            },
-            {
-                id: 11,
-                name: "Safety Inspection",
-                type: "maintenance",
-                price: 300,
-                priceRange: "budget",
-                description: "Comprehensive electrical safety audit",
-                icon: "🛡️"
-            },
-            {
-                id: 12,
-                name: "EV Charging Station Installation",
-                type: "installations",
-                price: 1200,
-                priceRange: "standard",
-                description: "Install electric vehicle charging stations",
-                icon: "🔋"
-            }
+        const services = [
+            { id: 1, name: 'Electrical Panel Upgrade', type: 'installations', price: 2500, description: 'Modern electrical panel installation for increased capacity and safety.' },
+            { id: 2, name: 'Wiring Installation', type: 'installations', price: 1800, description: 'Professional residential and commercial wiring installation.' },
+            { id: 3, name: 'Circuit Breaker Replacement', type: 'repairs', price: 350, description: 'Safe and quick circuit breaker replacement services.' },
+            { id: 4, name: 'Outlet Installation', type: 'installations', price: 200, description: 'Install new outlets and switches throughout your property.' },
+            { id: 5, name: 'Electrical Troubleshooting', type: 'repairs', price: 150, description: 'Diagnose and fix electrical issues quickly.' },
+            { id: 6, name: 'Lighting Installation', type: 'installations', price: 600, description: 'Professional installation of indoor and outdoor lighting.' },
+            { id: 7, name: 'Electrical Inspection', type: 'maintenance', price: 250, description: 'Comprehensive safety inspection of electrical systems.' },
+            { id: 8, name: 'Surge Protection', type: 'installations', price: 450, description: 'Protect your devices with professional surge protection.' },
+            { id: 9, name: 'Generator Installation', type: 'installations', price: 3500, description: 'Backup power solutions for residential and commercial use.' },
+            { id: 10, name: 'Emergency Repairs', type: 'repairs', price: 400, description: '24/7 emergency electrical repair service.' },
+            { id: 11, name: 'Maintenance Service', type: 'maintenance', price: 300, description: 'Regular maintenance to keep systems running smoothly.' },
+            { id: 12, name: 'Code Compliance', type: 'maintenance', price: 500, description: 'Ensure your electrical system meets all current codes.' }
         ];
 
-        // ========== PAGE NAVIGATION ==========
-        function showPage(pageName) {
-            // Hide all pages
-            document.querySelectorAll('.page').forEach(page => {
-                page.classList.add('hidden');
-            });
-
-            // Show selected page
-            document.getElementById(pageName + 'Page').classList.remove('hidden');
-
-            // Update nav links
-            document.querySelectorAll('.nav-link').forEach(link => {
-                link.classList.remove('active');
-            });
-            event.target.classList.add('active');
-
-            // Close hamburger menu
-            document.getElementById('hamburger').classList.remove('active');
-            document.getElementById('navMenu').classList.remove('active');
-
-            // Scroll to top
-            window.scrollTo(0, 0);
-
-            // Initialize services if services page
-            if (pageName === 'services') {
-                renderServices(servicesData, 'servicesGrid2');
-                setupFilters('serviceFilter2', 'priceFilter2', 'resetFilters2', 'servicesGrid2');
-            }
+        // ========== UTILITY FUNCTIONS ==========
+        function getPriceCategory(price) {
+            if (price < 500) return 'budget';
+            if (price < 1500) return 'standard';
+            return 'premium';
         }
 
-        // ========== RENDER SERVICES ==========
-        function renderServices(services, gridId) {
-            const grid = document.getElementById(gridId);
-            if (!grid) return;
+        function filterServices(typeFilter = '', priceFilter = '') {
+            return services.filter(service => {
+                const typeMatch = !typeFilter || service.type === typeFilter;
+                const priceMatch = !priceFilter || getPriceCategory(service.price) === priceFilter;
+                return typeMatch && priceMatch;
+            });
+        }
 
-            if (services.length === 0) {
-                grid.innerHTML = '<div class="no-results">No services match your filters. Please try adjusting your selection.</div>';
-                return;
-            }
-
-            grid.innerHTML = services.map(service => `
+        function renderServices(container, filteredServices) {
+            container.innerHTML = filteredServices.map(service => `
                 <div class="service-card">
-                    <div class="service-icon">${service.icon}</div>
-                    <h3>${service.name}</h3>
-                    <p class="service-type">${capitalizeFirstLetter(service.type)}</p>
-                    <p class="service-description">${service.description}</p>
+                    <div class="service-icon">⚡</div>
+                    <h4>${service.name}</h4>
+                    <p>${service.description}</p>
+                    <div class="service-price">$${service.price}</div>
                     <div class="service-footer">
-                        <span class="price">$${service.price}</span>
-                        <a class="btn btn-small" onclick="showPage('booking')">Book Now</a>
+                        <span class="price-badge">${getPriceCategory(service.price)}</span>
+                        <button class="book-btn" onclick="goToBooking(${service.id})">Book</button>
                     </div>
                 </div>
             `).join('');
         }
 
-        // ========== SETUP FILTERS ==========
-        function setupFilters(serviceFilterId, priceFilterId, resetBtnId, gridId) {
-            const serviceFilter = document.getElementById(serviceFilterId);
-            const priceFilter = document.getElementById(priceFilterId);
-            const resetBtn = document.getElementById(resetBtnId);
-
-            function applyFilters() {
-                const serviceType = serviceFilter.value;
-                const priceRange = priceFilter.value;
-                let filtered = servicesData;
-
-                if (serviceType) {
-                    filtered = filtered.filter(s => s.type === serviceType);
-                }
-                if (priceRange) {
-                    filtered = filtered.filter(s => s.priceRange === priceRange);
-                }
-
-                renderServices(filtered, gridId);
-            }
-
-            serviceFilter.addEventListener('change', applyFilters);
-            priceFilter.addEventListener('change', applyFilters);
-            resetBtn.addEventListener('click', () => {
-                serviceFilter.value = '';
-                priceFilter.value = '';
-                renderServices(servicesData, gridId);
-            });
+        function goToBooking(serviceId) {
+            const service = services.find(s => s.id === serviceId);
+            const select = document.getElementById('booking-service');
+            select.value = service.name;
+            showPage('booking');
         }
 
-        // ========== HAMBURGER MENU ==========
-        document.addEventListener('DOMContentLoaded', function() {
-            const hamburger = document.getElementById('hamburger');
-            const navMenu = document.getElementById('navMenu');
+        // ========== PAGE NAVIGATION ==========
+        function showPage(pageName) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            // Show selected page
+            document.getElementById(pageName).classList.add('active');
+            
+            // Update nav links
+            document.querySelectorAll('.nav-item').forEach(link => {
+                link.classList.remove('active');
+            });
+            document.querySelector(`[data-page="${pageName}"]`).classList.add('active');
+            
+            // Close mobile menu
+            document.querySelector('.hamburger').classList.remove('active');
+            document.querySelector('.nav-links').classList.remove('active');
+            
+            window.scrollTo(0, 0);
+        }
 
-            hamburger.addEventListener('click', function() {
-                navMenu.classList.toggle('active');
+        // ========== EVENT LISTENERS ==========
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initial render
+            const filtered = filterServices();
+            renderServices(document.getElementById('services-container'), filtered);
+            renderServices(document.getElementById('services-container-page2'), filtered);
+
+            // Populate booking form
+            const bookingSelect = document.getElementById('booking-service');
+            services.forEach(service => {
+                const option = document.createElement('option');
+                option.value = service.name;
+                option.textContent = `${service.name} - $${service.price}`;
+                bookingSelect.appendChild(option);
+            });
+
+            // Page navigation
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const page = item.dataset.page;
+                    if (page) showPage(page);
+                });
+            });
+
+            // Hamburger menu
+            const hamburger = document.querySelector('.hamburger');
+            hamburger.addEventListener('click', () => {
                 hamburger.classList.toggle('active');
+                document.querySelector('.nav-links').classList.toggle('active');
             });
 
-            // Initialize home page
-            renderServices(servicesData, 'servicesGrid');
-            setupFilters('serviceFilter', 'priceFilter', 'resetFilters', 'servicesGrid');
+            // HOME PAGE FILTERS
+            const serviceTypeHome = document.getElementById('service-type');
+            const priceRangeHome = document.getElementById('price-range');
+            const resetHome = document.getElementById('reset-filters');
 
-            // Contact form
-            document.getElementById('contactForm').addEventListener('submit', function(e) {
-                e.preventDefault();
-                alert('Thank you for your message! We will get back to you shortly.');
-                this.reset();
+            function updateHome() {
+                const filtered = filterServices(serviceTypeHome.value, priceRangeHome.value);
+                renderServices(document.getElementById('services-container'), filtered);
+            }
+
+            serviceTypeHome.addEventListener('change', updateHome);
+            priceRangeHome.addEventListener('change', updateHome);
+            resetHome.addEventListener('click', () => {
+                serviceTypeHome.value = '';
+                priceRangeHome.value = '';
+                updateHome();
             });
 
-            // Booking form
-            document.getElementById('bookingForm').addEventListener('submit', function(e) {
+            // SERVICES PAGE FILTERS
+            const serviceTypePage2 = document.getElementById('service-type-page2');
+            const priceRangePage2 = document.getElementById('price-range-page2');
+            const resetPage2 = document.getElementById('reset-filters-page2');
+
+            function updatePage2() {
+                const filtered = filterServices(serviceTypePage2.value, priceRangePage2.value);
+                renderServices(document.getElementById('services-container-page2'), filtered);
+            }
+
+            serviceTypePage2.addEventListener('change', updatePage2);
+            priceRangePage2.addEventListener('change', updatePage2);
+            resetPage2.addEventListener('click', () => {
+                serviceTypePage2.value = '';
+                priceRangePage2.value = '';
+                updatePage2();
+            });
+
+            // CONTACT FORM
+            document.getElementById('contact-form').addEventListener('submit', (e) => {
                 e.preventDefault();
-                alert('Your booking request has been received! We will confirm your appointment shortly.');
-                this.reset();
+                document.getElementById('contact-success').classList.add('show');
+                e.target.reset();
+                setTimeout(() => {
+                    document.getElementById('contact-success').classList.remove('show');
+                }, 5000);
+            });
+
+            // BOOKING FORM
+            document.getElementById('booking-form').addEventListener('submit', (e) => {
+                e.preventDefault();
+                document.getElementById('booking-success').classList.add('show');
+                e.target.reset();
+                setTimeout(() => {
+                    document.getElementById('booking-success').classList.remove('show');
+                }, 5000);
             });
         });
-
-        // ========== UTILITY FUNCTIONS ==========
-        function capitalizeFirstLetter(string) {
-            return string.charAt(0).toUpperCase() + string.slice(1);
-        }
-
-        function scrollToSection(sectionId) {
-            const section = document.getElementById(sectionId);
-            if (section) {
-                section.scrollIntoView({ behavior: 'smooth' });
-            }
-        }
     </script>
 </body>
 </html>
