@@ -221,6 +221,8 @@
             padding: 8rem 0;
             position: relative;
             overflow: hidden;
+            display: flex;
+            align-items: center;
         }
 
         .hero::before {
@@ -235,15 +237,66 @@
             pointer-events: none;
         }
 
+        .hero-images-container {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 50%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+            display: none;
+        }
+
+        @media (min-width: 1024px) {
+            .hero-images-container {
+                display: block;
+            }
+        }
+
+        .hero-image {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+
+        .hero-image.active {
+            opacity: 1;
+        }
+
         .hero-content {
             position: relative;
             z-index: 2;
+            max-width: 50%;
         }
 
         .hero h1 {
             color: white;
             margin-bottom: 1.5rem;
             line-height: 1.2;
+            min-height: 4.5rem;
+        }
+
+        .typing-cursor {
+            display: inline-block;
+            width: 3px;
+            height: 3.5rem;
+            background-color: var(--accent);
+            margin-left: 5px;
+            animation: blink 1s infinite;
+            vertical-align: middle;
+        }
+
+        @keyframes blink {
+            0%, 49% {
+                opacity: 1;
+            }
+            50%, 100% {
+                opacity: 0;
+            }
         }
 
         .hero p {
@@ -820,21 +873,27 @@
         </div>
     </nav>
 
-    <!-- HOME PAGE -->
-    <div class="page active" id="home">
-        <!-- HERO SECTION -->
-        <section class="hero">
-            <div class="container">
-                <div class="hero-content">
-                    <h1>Professional Electrical Solutions</h1>
-                    <p>Expert electrical services for residential and commercial properties. Licensed, insured, and trusted since 2015.</p>
-                    <div class="hero-buttons">
-                        <button class="btn-primary nav-item" data-page="booking">Schedule Service</button>
-                        <button class="btn-secondary nav-item" data-page="services">Browse Services</button>
+        <!-- HOME PAGE -->
+        <div class="page active" id="home">
+            <!-- HERO SECTION -->
+            <section class="hero">
+                <div class="hero-images-container" id="hero-images">
+                    <img src="public/hero-1.jpg" alt="Professional electrician at work" class="hero-image active">
+                    <img src="public/hero-2.jpg" alt="Electrical installation service" class="hero-image">
+                    <img src="public/hero-3.jpg" alt="Commercial electrical work" class="hero-image">
+                </div>
+                <div class="container">
+                    <div class="hero-content">
+                        <h1 id="typing-text"></h1>
+                        <span class="typing-cursor" id="typing-cursor"></span>
+                        <p>Expert electrical services for residential and commercial properties. Licensed, insured, and trusted since 2015.</p>
+                        <div class="hero-buttons">
+                            <button class="btn-primary nav-item" data-page="booking">Schedule Service</button>
+                            <button class="btn-secondary nav-item" data-page="services">Browse Services</button>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
         <!-- FILTERS -->
         <section class="section">
@@ -1203,8 +1262,43 @@
             window.scrollTo(0, 0);
         }
 
+        // ========== TYPING EFFECT ==========
+        function typeText(element, text, speed = 50) {
+            let index = 0;
+            element.textContent = '';
+            
+            function type() {
+                if (index < text.length) {
+                    element.textContent += text[index];
+                    index++;
+                    setTimeout(type, speed);
+                }
+            }
+            
+            type();
+        }
+
+        // ========== IMAGE CAROUSEL ==========
+        function startImageCarousel() {
+            const images = document.querySelectorAll('.hero-image');
+            let currentIndex = 0;
+            
+            setInterval(() => {
+                images[currentIndex].classList.remove('active');
+                currentIndex = (currentIndex + 1) % images.length;
+                images[currentIndex].classList.add('active');
+            }, 5000); // Change image every 5 seconds
+        }
+
         // ========== EVENT LISTENERS ==========
         document.addEventListener('DOMContentLoaded', () => {
+            // Start typing effect
+            const typingText = 'Professional Electrical Solutions';
+            typeText(document.getElementById('typing-text'), typingText, 50);
+            
+            // Start image carousel
+            startImageCarousel();
+
             // Initial render
             const filtered = filterServices();
             renderServices(document.getElementById('services-container'), filtered);
